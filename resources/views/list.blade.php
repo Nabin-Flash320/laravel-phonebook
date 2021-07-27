@@ -41,55 +41,78 @@
                     <input autocomplete="off" class="w-50 h-10 text-xl border-green-600 rounded-lg shadow-sm ml-1 mb-5
                         bg-gray-200 focus:bg-gray-100"
                         type="text">
-                    <button class="h-10 bg-green-500 hover:bg-green-700 text-black 
-                        py-2 px-4 rounded-xl">
+                    <a class="bg-green-500 hover:bg-green-700 text-black text-lg
+                        py-2 px-4 rounded-xl cursor-pointer">
                         Search
-                    </button>
+                    </a>
                 </form>
             </div>
-            <button class="bg-green-500 hover:bg-green-700 
-                text-black py-2 px-4 rounded-xl absolute top-5 right-44">
-                Create User
-            </button>
-            <button class="bg-green-500 hover:bg-green-700 
-                text-black py-2 px-4 rounded-xl absolute top-5 right-20">
+            
+            <div>
+            <form action="{{ route('phonebook.logout') }}" method="POST">
+                @csrf
+                <button class="bg-green-500 hover:bg-green-700 
+                text-black text-lg py-1 px-4 rounded-xl absolute top-5 right-44 cursor-pointer" type="submit">
+                Logout
+            </form>
+        </button>
+            </div>
+
+            <a class="bg-green-500 hover:bg-green-700 
+                text-black text-lg px-2 py-1 rounded-xl absolute top-5 right-20 cursor-pointer" href="{{ route('phonebook.user.profile') }}">
                 Profile
-            </button>
-        </nav>
+            </a>
+        </nav>  
+
 
         <div class="relative w-5/6 ml-32 flex flex-col divide-y">
-            
+
             <div class="h-3/12 pb-4">
-                <button class="bg-green-500 hover:bg-green-700 h-10 w-24 
-                    rounded-xl">
+                <a class="bg-green-500 hover:bg-green-700 
+                    rounded-xl text-lg p-2 cursor-pointer" href="{{ route('phonebook.save') }}">
                     Save New
-                </button>
+                </a>
             </div>
             
+                        
+            @if ($datas)
 
             <div  class="h-9/12 mb-10">
                 <table class="w-full top-40 left-32 border bg-green-400">
-
+                
                     <thead>
                         <tr class="border-b">
-                            <th class="p-2 border-r cursor-pointer font-bold text-black">Name</th>
-                            <th class="p-2 border-r cursor-pointer font-bold text-black">Phone number</th>
-                            <th class="p-2 border-r cursor-pointer font-bold text-black">Address</th>
+                            <th class="p-2 w-2/6 border-r cursor-pointer font-bold text-black">Name</th>
+                            <th class="p-2 w-2/6 border-r cursor-pointer font-bold text-black">Phone number</th>
+                            <th class="p-2 w-2/6 border-r cursor-pointer font-bold text-black">Address</th>
                         </tr> 
                     </thead>
                     <tbody>
-                        @for ($i = 0; $i <= 100; $i++)
+                        @foreach ($datas as $data)
+                        
                             <tr class="border-b mb-100">
-                                <th class="p-2 border-r cursor-pointer font-thin text-20 text-white">{{ $i }}</th>
-                                <th class="p-2 border-r cursor-pointer font-thin text-20 text-white">Phone number</th>
-                                <th class="p-2 border-r cursor-pointer font-thin text-20 text-white">Address</th>
-                            </tr> 
-                        @endfor
+                                <th class="p-2 w-2/6 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Name }}</th>
+                                <th class="p-2 w-2/6 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Phone_number }}</th>
+                                <th class="p-2 w-2/6 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Address }}</th>
+                            </tr>  
                             
+                        @endforeach
+
+
                     </tbody>
                     
                 </table>
             </div>
+                
+            @else
+                
+                <div class="border-3 flex align-middle justify-center">
+                    <span class="font-bold">No any data available.</span>
+                </div>
+                
+            @endif
+    
+            
         </div>
 
 </body>

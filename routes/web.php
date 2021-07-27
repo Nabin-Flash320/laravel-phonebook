@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PhonebookController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfileController;
+use Symfony\Component\HttpKernel\Profiler\Profiler;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +21,27 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::get('/phonebook', [PhonebookController::class, 'index'])->name('phonebook');
-Route::post('/phonebook', [PhonebookController::class, 'store'])->name('phonebook.get');
+// For user login system.
+Route::get('/phonebook/login', [LoginController::class, 'index'])->name('phonebook.login');
+Route::post('/phonebook/login', [LoginController::class, 'login'])->name('phonebook.login');
+
+//Logout 
+Route::post('phonebook/logout', [LoginController::class, 'logout'])->name('phonebook.logout');
+
+// For user registration system.
+Route::get('/phonebook/register', [RegisterController::class, 'index'])->name('phonebook.register');
+Route::post('/phonebook/register', [RegisterController::class, 'register'])->name('phonebook.register');
+//For other CRUD operations.
+
+//Saving operation.
+Route::get('/phonebook/save', [PhonebookController::class, 'save'])->name('phonebook.save');
+Route::post('/phonebook/store', [PhonebookController::class, 'store'])->name('phonebook.store');
+
 Route::get('/phonebook/list', [PhonebookController::class, 'list_all'])->name('phonebook.list');
 Route::get('/phonebook/{id}/edit', [PhonebookController::class, 'edit'])->name('phonebook.edit');
 Route::post('/phonebook/{id}/update', [PhonebookController::class, 'update'])->name('phonebook.update');
 Route::get('/phonebook/{id}/delete', [PhonebookController::class, 'delete'])->name('phonebook.delete');
+
+//User profile
+Route::get('/phonebook/profile', [ProfileController::class, 'profile'])->name('phonebook.user.profile');

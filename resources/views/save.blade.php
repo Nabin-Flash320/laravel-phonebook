@@ -27,7 +27,8 @@
 
 
     <div class="bg-green-400 absolute top-36 flex justify-center flex-co w-1/3 rounded-2xl px-10">
-        <form class="flex flex-col p-10 w-full" autocomplete="off">
+        <form class="flex flex-col p-10 w-full" 
+            autocomplete="off"  action="{{ route("phonebook.store") }}" method="POST">
             @csrf
             <label class="block text-black text-xl font-medium ml-1" for="name">
                 Name
@@ -55,15 +56,16 @@
                 **Every inputs are mandatory!!
             </span>
             <button class="
-                ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black bg-green-600 hover:bg-green-800" 
+                ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black 
+                bg-green-600 hover:bg-green-800 cursor-pointer" 
                 type="submit">
                 Save
             </button>
-            <button class="
-                ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black bg-green-600 hover:bg-green-800" 
-                type="button">
+            <a class="
+                ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black 
+                bg-green-600 hover:bg-green-800 cursor-pointer">
                 Back
-            </button>
+            </a>
         </form>
     </div>
     

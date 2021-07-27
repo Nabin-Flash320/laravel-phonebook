@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class phonebooks extends Model
+class phonebook extends Model
 {
     use HasFactory;
 
-    protected $fillables = [
+    protected $fillable = [
         'Name', 
         'Phone_number',
         'Address',

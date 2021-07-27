@@ -28,15 +28,38 @@
         
 
     <div class="bg-green-400 absolute top-44 flex justify-center flex-co w-1/3 rounded-2xl px-10">
-        <form class="flex flex-col p-10 w-full" autocomplete="off">
+        <form class="flex flex-col p-10 w-full" 
+            autocomplete="off" action="{{ route('phonebook.login') }}" method="POST">
             @csrf
             <label class="block text-black text-xl font-medium ml-1" for="email">Email</label>
-            <input class="w-full h-11 text-xl border-green-600 rounded-lg shadow-sm ml-1 mb-5" type="email" name="email" placeholder="Email" required>
-            <label class="block text-black text-xl font-medium ml-1" for="password">Password</label>
-            <input class="w-full h-11 text-xl border-green-600 rounded-lg shadow-sm ml-1 mb-5" type="password" name="password" placeholder="Password" required>
-            <a class="ml-1 text-lg text-green-600 hover:text-green-800" href="#">Forget password?</a>
-            <button class="ml-1 mt-5 h-9 text-xl border-2 rounded-full text-center border-black bg-green-600 hover:bg-green-800" type="submit">Login</button>
-            <button class="ml-1 mt-5 h-9 text-xl border-2 rounded-full text-center border-black bg-green-600 hover:bg-green-800" type="button">Register</button>
+            <input class="w-full h-11 text-xl border-green-600 rounded-lg 
+                shadow-sm ml-1 mb-5" type="email" name="email" placeholder="Email" required>
+
+            <label class="block text-black text-xl font-medium ml-1" for="password"
+                >Password
+            </label>
+            <input class="w-full h-11 text-xl border-green-600 rounded-lg 
+                shadow-sm ml-1 mb-5" type="password" name="password" placeholder="Password" 
+                required>
+
+            @error('Error')
+            <span class="ml-1 text-lg text-red-900">
+                {{ $message }}
+            </span>
+            @enderror
+            
+            
+            <a class="ml-1 text-lg text-green-600 hover:text-green-800" 
+                href="#">Forget password?
+            </a>
+            <button class="ml-1 mt-5 h-9 text-xl border-2 rounded-full text-center 
+                border-black bg-green-600 hover:bg-green-800 cursor-pointer" 
+                type="submit">Login
+            </button>
+            <a class="ml-1 mt-5 h-9 text-xl border-2 rounded-full text-center 
+                border-black bg-green-600 hover:bg-green-800 cursor-pointer" 
+                type="button" href="{{ route('phonebook.register') }}">Register
+            </a>
         </form>
     </div>
 

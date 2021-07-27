@@ -34,7 +34,8 @@
         
 
     <div class="bg-green-400 absolute top-36 flex justify-center flex-co w-1/3 rounded-2xl px-10">
-        <form class="flex flex-col p-10 w-full" autocomplete="off">
+        <form class="flex flex-col p-10 w-full" 
+            autocomplete="off" action="{{ route('phonebook.register') }}" method="POST">
             @csrf
             <label class="block text-black text-xl font-medium ml-1" for="name">
                 Name
@@ -66,16 +67,23 @@
                 type="password" 
                 name="password_confirmation" 
             required>
+            @error('Error')
+            <span class="ml-1 text-lg text-red-900">
+                {{ $message }}
+            </span>
+            @enderror
             <button class="
-                ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black bg-green-600 hover:bg-green-800" 
+                ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black 
+                bg-green-600 hover:bg-green-800 cursor-pointer" 
                 type="submit">
                 Register
             </button>
-            <button class="
-                ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black bg-green-600 hover:bg-green-800" 
-                type="button">
+            <a class="
+                ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black 
+                bg-green-600 hover:bg-green-800 cursor-pointer" 
+                href="{{ route('phonebook.login') }}">
                 Back
-            </button>
+            </a>
         </form>
     </div>
     
