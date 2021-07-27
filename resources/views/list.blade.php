@@ -47,21 +47,36 @@
                     </a>
                 </form>
             </div>
-            
-            <div>
-            <form action="{{ route('phonebook.logout') }}" method="POST">
-                @csrf
-                <button class="bg-green-500 hover:bg-green-700 
-                text-black text-lg py-1 px-4 rounded-xl absolute top-5 right-44 cursor-pointer" type="submit">
-                Logout
-            </form>
-        </button>
-            </div>
 
-            <a class="bg-green-500 hover:bg-green-700 
-                text-black text-lg px-2 py-1 rounded-xl absolute top-5 right-20 cursor-pointer" href="{{ route('phonebook.user.profile') }}">
-                Profile
+            @if (Auth::user())
+
+                <div>
+                    <form action="{{ route('phonebook.logout') }}" method="POST">
+                        @csrf
+                        <button class="bg-green-500 hover:bg-green-700 
+                        text-black text-lg py-1 px-4 rounded-xl absolute top-5 right-44 cursor-pointer" type="submit">
+                        Logout
+                    </form>
+                </button>
+                    </div>
+        
+                    <a class="bg-green-500 hover:bg-green-700 
+                        text-black text-lg px-2 py-1 rounded-xl absolute top-5 right-20 cursor-pointer" href="{{ route('phonebook.user.profile') }}">
+                        Profile
+                    </a>
+                
+            @else
+
+                <a class="bg-green-500 hover:bg-green-700 
+                text-black text-lg px-2 py-1 rounded-xl absolute top-5 right-32 cursor-pointer" 
+                    href="{{ route('phonebook.login') }}">
+                Login
             </a>
+                
+            @endif
+
+            
+
         </nav>  
 
 

@@ -27,7 +27,7 @@ Route::get('/phonebook/login', [LoginController::class, 'index'])->name('phonebo
 Route::post('/phonebook/login', [LoginController::class, 'login'])->name('phonebook.login');
 
 //Logout 
-Route::post('phonebook/logout', [LoginController::class, 'logout'])->name('phonebook.logout');
+Route::post('phonebook/logout', [LoginController::class, 'logout'])->name('phonebook.logout')->middleware('auth');
 
 // For user registration system.
 Route::get('/phonebook/register', [RegisterController::class, 'index'])->name('phonebook.register');
@@ -35,13 +35,13 @@ Route::post('/phonebook/register', [RegisterController::class, 'register'])->nam
 //For other CRUD operations.
 
 //Saving operation.
-Route::get('/phonebook/save', [PhonebookController::class, 'save'])->name('phonebook.save');
-Route::post('/phonebook/store', [PhonebookController::class, 'store'])->name('phonebook.store');
+Route::get('/phonebook/save', [PhonebookController::class, 'save'])->name('phonebook.save')->middleware('auth');
+Route::post('/phonebook/store', [PhonebookController::class, 'store'])->name('phonebook.store')->middleware('auth');
 
 Route::get('/phonebook/list', [PhonebookController::class, 'list_all'])->name('phonebook.list');
-Route::get('/phonebook/{id}/edit', [PhonebookController::class, 'edit'])->name('phonebook.edit');
-Route::post('/phonebook/{id}/update', [PhonebookController::class, 'update'])->name('phonebook.update');
-Route::get('/phonebook/{id}/delete', [PhonebookController::class, 'delete'])->name('phonebook.delete');
+Route::get('/phonebook/{id}/edit', [PhonebookController::class, 'edit'])->name('phonebook.edit')->middleware('auth');
+Route::post('/phonebook/{id}/update', [PhonebookController::class, 'update'])->name('phonebook.update')->middleware('auth');
+Route::get('/phonebook/{id}/delete', [PhonebookController::class, 'delete'])->name('phonebook.delete')->middleware('auth');
 
 //User profile
-Route::get('/phonebook/profile', [ProfileController::class, 'profile'])->name('phonebook.user.profile');
+Route::get('/phonebook/profile', [ProfileController::class, 'profile'])->name('phonebook.user.profile')->middleware('auth');

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>{{ Auth::user()->name }} profile | Phonebook</title>
+    <title>{{ Auth::user()->name }}'s profile in Phonebook</title>
 </head>
 <body class="bg-green-300 flex justify-center flex-col m-0 p-0">
 
@@ -60,54 +60,79 @@
                 </div>
         </nav>
 
-        <div class="relative w-5/6 ml-32 flex flex-col divide-y">
+        <div class="flex flex-row w-full">
+
+            <div class="relative w-3/4 ml-32 flex flex-col divide-y">
             
-            <div class="h-3/12 pb-4">
-                <a class="bg-green-500 hover:bg-green-700 
-                    rounded-xl text-lg p-2 cursor-pointer" href="{{ route('phonebook.save') }}">
-                    Save New
-                </a>
+                <div class="h-3/12 pb-4">
+                    <a class="bg-green-500 hover:bg-green-700 
+                        rounded-xl text-lg p-2 cursor-pointer" href="{{ route('phonebook.save') }}">
+                        Save New
+                    </a>
+                </div>
+    
+                @if ($datas)
+                        <table class="w-full top-40 left-32 border bg-green-400">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="p-2 border-r cursor-pointer font-bold text-black">Name</th>
+                                    <th class="p-2 border-r cursor-pointer font-bold text-black">Phone number</th>
+                                    <th class="p-2 border-r cursor-pointer font-bold text-black">Address</th>
+                                    <th class="p-2 border-r cursor-pointer font-bold text-black">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    @foreach ($datas as $data)
+                                        <tr class="border-b mb-10">
+                                            <th class="p-2 w-1/4 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Name }}</th>
+                                            <th class="p-2 w-1/4 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Phone_number }}</th>
+                                            <th class="p-2 w-1/4 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Address }}</th>
+                                            <th class="p-2 w-1/4 border-r cursor-pointer font-thin text-20 text-black">
+                                                <div class="flex flex-row">
+                                                    <a class="bg-green-500 hover:bg-green-700  cursor-pointer
+                                                    text-black py-1 ml-2 relative left-10 w-2/6 rounded-xl font-normal"  
+                                                        href="/phonebook/{{ $data->id}}/edit"
+                                                        >Edit
+                                                    </a>
+                                                    <a class="bg-green-500 hover:bg-green-700 cursor-pointer
+                                                    text-black py-1 ml-2 relative left-12 w-2/6 rounded-xl font-normal"
+                                                        href="/phonebook/{{ $data->id }}/delete">Delete
+                                                    </a>
+                                                </div>
+                                            </th>
+                                        </tr>  
+                                    @endforeach
+                            </tbody>
+                        </table>
+                @else
+                <div class="border-3 flex align-middle justify-center">
+                    <span class="font-bold">No any data available.</span>
+                </div>
+                @endif
             </div>
 
-            @if ($datas)
-                    <table class="w-full top-40 left-32 border bg-green-400">
-                        <thead>
-                            <tr class="border-b">
-                                <th class="p-2 border-r cursor-pointer font-bold text-black">Name</th>
-                                <th class="p-2 border-r cursor-pointer font-bold text-black">Phone number</th>
-                                <th class="p-2 border-r cursor-pointer font-bold text-black">Address</th>
-                                <th class="p-2 border-r cursor-pointer font-bold text-black">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                @foreach ($datas as $data)
-                                    <tr class="border-b mb-10">
-                                        <th class="p-2 w-1/4 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Name }}</th>
-                                        <th class="p-2 w-1/4 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Phone_number }}</th>
-                                        <th class="p-2 w-1/4 border-r cursor-pointer font-thin text-20 text-black">{{ $data->Address }}</th>
-                                        <th class="p-2 w-1/4 border-r cursor-pointer font-thin text-20 text-black">
-                                            <div class="flex flex-row">
-                                                <a class="bg-green-500 hover:bg-green-700  cursor-pointer
-                                                text-black py-1 ml-2 relative left-10 w-2/6 rounded-xl font-normal"  
-                                                    href="/phonebook/{{ $data->id}}/edit"
-                                                    >Edit
-                                                </a>
-                                                <a class="bg-green-500 hover:bg-green-700 cursor-pointer
-                                                text-black py-1 ml-2 relative left-12 w-2/6 rounded-xl font-normal"
-                                                    href="/phonebook/{{ $data->id }}/delete">Delete
-                                                </a>
-                                            </div>
-                                        </th>
-                                    </tr>  
-                                @endforeach
-                        </tbody>
-                    </table>
-            @else
-            <div class="border-3 flex align-middle justify-center">
-                <span class="font-bold">No any data available.</span>
-            </div>
-            @endif
+            <div class="border-l-2 border-b-2 w-1/4 h-96 mx-10 flex flex-col pl-3">
+
+                <div class="pt-2 flex justify-center items-center">
+                    <span class="text-green-900 rounded-xl text-lg p-2 cursor-pointer">
+                        Settings
+                    </span>
+                </div>
+
+                <div class="flex items-start flex-col pt-6 mb-4">
+                    <span class="text-green-900">User Name: {{ Auth::user()->name}}</span>
+                    <span class="text-green-900">User Email: {{ Auth::user()->email}}</span>
+                </div>
+
+                <div class="flex flex-col border-t-2 pt-4"> 
+                    <a class="text-green-500 hover:text-green-700" href="#">Change username.</a>
+                    <a class="text-green-500 hover:text-green-700" href="#">Change use email.</a>
+                    <a class="text-green-500 hover:text-green-700" href="#">Change use password.</a>
+                </div>                                
+            
+            </div>    
+
         </div>
-
+        
 </body>
 </html>

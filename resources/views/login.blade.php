@@ -48,7 +48,6 @@
             </span>
             @enderror
             
-            
             <a class="ml-1 text-lg text-green-600 hover:text-green-800" 
                 href="#">Forget password?
             </a>

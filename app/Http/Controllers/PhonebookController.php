@@ -11,7 +11,7 @@ class PhonebookController extends Controller
 {
     
     public function index(){
-        return redirect()->route('phonebook.login');
+        return redirect()->route('phonebook.list');
     }
 
     public function list_all(){
