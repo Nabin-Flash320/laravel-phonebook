@@ -28,8 +28,7 @@
         
 
     <div class="bg-green-400 absolute top-44 flex justify-center flex-co w-1/3 rounded-2xl px-10">
-        <form class="flex flex-col p-10 w-full" 
-            autocomplete="off" action="{{ route('phonebook.login') }}" method="POST">
+        <form class="flex flex-col p-10 w-full"  action="{{ route('phonebook.login') }}" method="POST">
             @csrf
             <label class="block text-black text-xl font-medium ml-1" for="email">Email</label>
             <input class="w-full h-11 text-xl border-green-600 rounded-lg 
@@ -42,11 +41,13 @@
                 shadow-sm ml-1 mb-5" type="password" name="password" placeholder="Password" 
                 required>
 
-            @error('Error')
+            @if(session()->has('verification_error'))
             <span class="ml-1 text-lg text-red-900">
-                {{ $message }}
+                {{ session()->get(verification_error) }}
             </span>
-            @enderror
+            @elseif(session()->has('error'))
+                {{ session()->get('error') }}
+            @endif
             
             <a class="ml-1 text-lg text-green-600 hover:text-green-800" 
                 href="#">Forget password?

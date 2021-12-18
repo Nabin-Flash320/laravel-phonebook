@@ -30,9 +30,7 @@ class LoginController extends Controller
             return redirect()->route('phonebook.list');
         }
 
-        return back()->withErrors([
-            'Error'=>'Invalid credentials or user not registered.',
-        ]);
+        return back()->with('error', 'Invalid credentials or user not registered');
 
     }
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>{{ Auth::user()->name }}'s profile in Phonebook</title>
+    <title>Phonebook profile({{ Auth::user()->name }})</title>
 </head>
 <body class="bg-green-300 flex justify-center flex-col m-0 p-0">
 
@@ -113,21 +113,26 @@
 
             <div class="border-l-2 border-b-2 w-1/4 h-96 mx-10 flex flex-col pl-3">
 
-                <div class="pt-2 flex justify-center items-center">
+                <div class="pt-2 flex justify-center items-center border-b-2">
                     <span class="text-green-900 rounded-xl text-lg p-2 cursor-pointer">
                         Settings
                     </span>
                 </div>
 
                 <div class="flex items-start flex-col pt-6 mb-4">
-                    <span class="text-green-900">User Name: {{ Auth::user()->name}}</span>
-                    <span class="text-green-900">User Email: {{ Auth::user()->email}}</span>
+                    <img class="w-20 relative left-28 border-2 rounded-full border-green-700" src="{{ asset('image/defaultProfile.png') }}" alt="User profile">
+                    <span class="text-green-900 relative left-28 mt-4">{{ Auth::user()->name}}</span>
+                    @if(Auth::user()->is_verified !== 1)
+                        <span class="text-green-900 relative left-20">(Account not verified!)</span>
+                    @endif
+                    <span class="text-green-900 relative left-16">{{ Auth::user()->email}}</span>
                 </div>
 
-                <div class="flex flex-col border-t-2 pt-4"> 
+                <div class="flex flex-col border-t-2 pt-2 mt-2"> 
                     <a class="text-green-500 hover:text-green-700" href="#">Change username.</a>
                     <a class="text-green-500 hover:text-green-700" href="#">Change use email.</a>
                     <a class="text-green-500 hover:text-green-700" href="#">Change use password.</a>
+                    <a class="text-green-500 hover:text-green-700" href="#">Change profile picture</a>
                 </div>                                
             
             </div>    

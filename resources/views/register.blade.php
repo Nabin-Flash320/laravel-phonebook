@@ -34,8 +34,7 @@
         
 
     <div class="bg-green-400 absolute top-36 flex justify-center flex-co w-1/3 rounded-2xl px-10">
-        <form class="flex flex-col p-10 w-full" 
-            autocomplete="off" action="{{ route('phonebook.register') }}" method="POST">
+        <form class="flex flex-col p-10 w-full" action="{{ route('phonebook.register') }}" method="POST">
             @csrf
             <label class="block text-black text-xl font-medium ml-1" for="name">
                 Name
@@ -67,11 +66,21 @@
                 type="password" 
                 name="password_confirmation" 
             required>
-            @error('Error')
+
+            @if(session()->has('verification_error'))
             <span class="ml-1 text-lg text-red-900">
-                {{ $message }}
+                {{ session()->get('verification_error') }}
             </span>
-            @enderror
+            @elseif(session()->has('verification_success'))
+            <span class="ml-1 text-lg text-red-900">
+                {{ session()->get('verification_success') }}
+            </span>
+            @elseif(session()->has('error'))
+            <span class="ml-1 text-lg text-red-900">
+                {{ session()->get('error') }}
+            </span>
+            @endif
+            
             <button class="
                 ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black 
                 bg-green-600 hover:bg-green-800 cursor-pointer" 
