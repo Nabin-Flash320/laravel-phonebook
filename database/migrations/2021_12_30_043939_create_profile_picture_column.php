@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddVerificationCodeAndVerifiedColumn extends Migration
+class CreateProfilePictureColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class AddVerificationCodeAndVerifiedColumn extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('image_path')->nullable();
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ class AddVerificationCodeAndVerifiedColumn extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('image_path'); 
+        });
     }
 }

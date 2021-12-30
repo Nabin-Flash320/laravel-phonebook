@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PhonebookController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\profileSettingController;
 use Symfony\Component\HttpKernel\Profiler\Profiler;
 
 /*
@@ -48,3 +49,5 @@ Route::get('/phonebook/{id}/delete', [PhonebookController::class, 'delete'])->na
 
 //User profile route
 Route::get('/phonebook/profile', [ProfileController::class, 'profile'])->name('phonebook.user.profile')->middleware('auth');
+Route::get('/phonebook/{id}/changeprofilepicture', [profileSettingController::class, 'change_profile_picture'])->name('phonebook.user.profile.picture')->middleware('auth');
+Route::post('/phonebook/{id}/changeprofilepicture', [profileSettingController::class, 'update_profile_picture'])->name('phonebook.user.profile.picture')->middleware('auth');

@@ -120,7 +120,12 @@
                 </div>
 
                 <div class="flex items-start flex-col pt-6 mb-4">
-                    <img class="w-20 relative left-28 border-2 rounded-full border-green-700" src="{{ asset('image/defaultProfile.png') }}" alt="User profile">
+                    @if (Auth::user()->image_path == null)
+                    <img class="w-20 relative left-28 border-2 rounded-full border-green-700" src="{{ asset('image/defaultProfile.png') }}" alt="User profile">                      
+                    @else
+                    <img class="w-20 relative left-28 border-2 rounded-lg border-green-700" src="{{ asset('image/profilePics').'/'.Auth::user()->image_path }}" alt="User profile">
+                    @endif
+                    
                     <span class="text-green-900 relative left-28 mt-4">{{ Auth::user()->name}}</span>
                     @if(Auth::user()->is_verified !== 1)
                         <span class="text-green-900 relative left-20">(Account not verified!)</span>
@@ -130,9 +135,9 @@
 
                 <div class="flex flex-col border-t-2 pt-2 mt-2"> 
                     <a class="text-green-500 hover:text-green-700" href="#">Change username.</a>
-                    <a class="text-green-500 hover:text-green-700" href="#">Change use email.</a>
-                    <a class="text-green-500 hover:text-green-700" href="#">Change use password.</a>
-                    <a class="text-green-500 hover:text-green-700" href="#">Change profile picture</a>
+                    <a class="text-green-500 hover:text-green-700" href="#">Change user email.</a>
+                    <a class="text-green-500 hover:text-green-700" href="#">Change user password.</a>
+                    <a class="text-green-500 hover:text-green-700" href="{{ route('phonebook.user.profile.picture', ['id'=>Auth::user()->id]) }}">Change profile picture</a>
                 </div>                                
             
             </div>    
