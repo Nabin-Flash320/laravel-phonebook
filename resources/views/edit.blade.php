@@ -53,7 +53,8 @@
             </button>
             <a class="
                 ml-1 mt-3 h-9 text-xl border-2 rounded-full text-center border-black 
-                bg-green-600 hover:bg-green-800 cursor-pointer">
+                bg-green-600 hover:bg-green-800 cursor-pointer"
+                href="{{ route('phonebook.user.profile') }}">
                 Back
             </a>
         </form>

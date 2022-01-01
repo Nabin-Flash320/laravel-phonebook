@@ -43,7 +43,7 @@
 
             @if(session()->has('verification_error'))
             <span class="ml-1 text-lg text-red-900">
-                {{ session()->get(verification_error) }}
+                {{ session()->get('verification_error') }}
             </span>
             @elseif(session()->has('error'))
                 {{ session()->get('error') }}

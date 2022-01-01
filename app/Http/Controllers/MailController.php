@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegistrationMail;
+use App\Mail\PasswordChangeMail;
 
 
 class MailController extends Controller
@@ -12,5 +13,6 @@ class MailController extends Controller
         $email_data = ['name'=>$name, 'email'=>$email, 'verification_code'=>$verification_code];
         Mail::to($email)->send(new RegistrationMail($email_data));
     }
+
 
 }

@@ -31,7 +31,7 @@ class RegistrationMail extends Mailable
     {
         // dd($this->email_data);
         return $this->from(env('MAIL_USERNAME', env('From office')))
-                                ->subject('Emain Verification Code')
+                                ->subject('Email Verification Code')
                                 ->view('registrationEmail', ['email_data'=>$this->email_data]);
     }
 }

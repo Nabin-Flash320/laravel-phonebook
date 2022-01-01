@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Models\phonebook;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,6 @@ class PhonebookController extends Controller
     }
 
     public function store(Request $request){
-        
         $details = $request->validate([
         'name' => 'required',
         'phonenumber' => 'required',

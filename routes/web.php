@@ -47,7 +47,19 @@ Route::get('/phonebook/{id}/edit', [PhonebookController::class, 'edit'])->name('
 Route::post('/phonebook/{id}/update', [PhonebookController::class, 'update'])->name('phonebook.update')->middleware('auth');
 Route::get('/phonebook/{id}/delete', [PhonebookController::class, 'delete'])->name('phonebook.delete')->middleware('auth');
 
-//User profile route
+//User profile and profile setting route
 Route::get('/phonebook/profile', [ProfileController::class, 'profile'])->name('phonebook.user.profile')->middleware('auth');
-Route::get('/phonebook/{id}/changeprofilepicture', [profileSettingController::class, 'change_profile_picture'])->name('phonebook.user.profile.picture')->middleware('auth');
-Route::post('/phonebook/{id}/changeprofilepicture', [profileSettingController::class, 'update_profile_picture'])->name('phonebook.user.profile.picture')->middleware('auth');
+//=>Change profile picture
+Route::get('/phonebook/{id}/changeprofilepicture', [profileSettingController::class, 'change_profile_picture'])->name('phonebook.user.profile.picture')->middleware(['auth', 'verified']);
+Route::post('/phonebook/{id}/changeprofilepicture', [profileSettingController::class, 'update_profile_picture'])->name('phonebook.user.profile.picture')->middleware('auth', 'verified');
+//=>Change username
+Route::get('/phonebook/{id}/changeusername', [profileSettingController::class, 'change_user_name'])->name('phonebook.user.profile.username')->middleware('auth', 'verified');
+Route::post('/phonebook/{id}/changeusername', [profileSettingController::class, 'update_username'])->name('phonebook.user.profile.username')->middleware('auth', 'verified');
+//=>Change email
+Route::get('/phonebook/{id}/changeuseremail', [profileSettingController::class, 'change_email'])->name('phonebook.user.profile.email')->middleware('auth', 'verified');
+Route::post('/phonebook/{id}/changeuseremail', [profileSettingController::class, 'update_email'])->name('phonebook.user.profile.email')->middleware('auth', 'verified');
+//=>Change password
+Route::get('/phonebook/{id}/changeuserpassword', [profileSettingController::class, 'change_password'])->name('phonebook.user.profile.password')->middleware(['auth', 'verified']);
+Route::post('/phonebook/{id}/changeuserpassword', [profileSettingController::class, 'update_password'])->name('phonebook.user.profile.password')->middleware(['auth', 'verified']);
+
+

@@ -66,9 +66,24 @@
             
                 <div class="h-3/12 pb-4">
                     <a class="bg-green-500 hover:bg-green-700 
-                        rounded-xl text-lg p-2 cursor-pointer" href="{{ route('phonebook.save') }}">
+                        rounded-xl text-lg p-2 cursor-pointer" href="{{ route('phonebook.list') }}">
+                        Back
+                    </a>
+                    <a class="bg-green-500 hover:bg-green-700 
+                        rounded-xl text-lg p-2 cursor-pointer relative left-5" href="{{ route('phonebook.save') }}">
                         Save New
                     </a>
+                    @if (session()->has('verificationError'))
+                        <span class="text-red-900 relative left-44">{{ session()->get('verificationError') }}</span>
+                    @elseif(session()->has('usernameSuccess'))
+                        <span class="text-red-900 relative left-44">{{ session()->get('usernameSuccess') }}</span>
+                    @elseif(session()->has('emailSentSuccess'))
+                        <span class="text-red-900 relative left-44">{{ session()->get('emailSentSuccess') }}</span>
+                    @elseif(session()->has('emailSuccess'))
+                        <span class="text-red-900 relative left-44">{{ session()->get('emailSuccess') }}</span>
+                    @elseif(session()->has('passwordChangeSuccess'))
+                        <span class="text-red-900 relative left-44">{{ session()->get('passwordChangeSuccess') }}</span>
+                    @endif
                 </div>
     
                 @if ($datas)
@@ -134,9 +149,9 @@
                 </div>
 
                 <div class="flex flex-col border-t-2 pt-2 mt-2"> 
-                    <a class="text-green-500 hover:text-green-700" href="#">Change username.</a>
-                    <a class="text-green-500 hover:text-green-700" href="#">Change user email.</a>
-                    <a class="text-green-500 hover:text-green-700" href="#">Change user password.</a>
+                    <a class="text-green-500 hover:text-green-700" href="{{ route('phonebook.user.profile.username', ['id'=>Auth::user()->id]) }}">Change username.</a>
+                    <a class="text-green-500 hover:text-green-700" href="{{ route('phonebook.user.profile.email', ['id'=>Auth::user()->id]) }}">Change user email.</a>
+                    <a class="text-green-500 hover:text-green-700" href="{{ route('phonebook.user.profile.password', ['id'=>Auth::user()->id]) }}">Change user password.</a>
                     <a class="text-green-500 hover:text-green-700" href="{{ route('phonebook.user.profile.picture', ['id'=>Auth::user()->id]) }}">Change profile picture</a>
                 </div>                                
             
