@@ -1,6 +1,6 @@
 
 # Laravel-Phonebook
-<p>This is a phonebook appliation using [Laravel](https://laravel.com/), a [PHP](https://www.php.net/) framework.</p>
+<p>This is a phonebook appliation using <a href="https://laravel.com/">Laravel</a>, a <a href="https://www.php.net/">PHP</a> framework.</p>
 
 ## Features
 1. Login and logout system
