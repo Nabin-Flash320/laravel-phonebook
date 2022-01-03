@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Login</title>
+    <title>{{ config('app.name') }} -- Login</title>
 </head>
 <body class="bg-green-300 flex justify-center">
 
@@ -50,7 +50,7 @@
             @endif
             
             <a class="ml-1 text-lg text-green-600 hover:text-green-800" 
-                href="#">Forget password?
+                href="{{ route('phonebook.forgetpassword') }}">Forget password?
             </a>
             <button class="ml-1 mt-5 h-9 text-xl border-2 rounded-full text-center 
                 border-black bg-green-600 hover:bg-green-800 cursor-pointer" 

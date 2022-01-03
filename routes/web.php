@@ -9,6 +9,7 @@ use App\Http\Controllers\PhonebookController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\profileSettingController;
+use App\Http\Controllers\forgetPasswordController;
 use Symfony\Component\HttpKernel\Profiler\Profiler;
 
 /*
@@ -61,5 +62,12 @@ Route::post('/phonebook/{id}/changeuseremail', [profileSettingController::class,
 //=>Change password
 Route::get('/phonebook/{id}/changeuserpassword', [profileSettingController::class, 'change_password'])->name('phonebook.user.profile.password')->middleware(['auth', 'verified']);
 Route::post('/phonebook/{id}/changeuserpassword', [profileSettingController::class, 'update_password'])->name('phonebook.user.profile.password')->middleware(['auth', 'verified']);
+
+//Forget password and changing it.
+Route::get('/phonebook/forgetpassword', [forgetPasswordController::class, 'index'])->name('phonebook.forgetpassword');
+Route::post('/phonebook/forgetpassword', [forgetPasswordController::class, 'send_login_link'])->name('phonebook.loginlink');
+Route::get('/phonebook/forgetpasswordemail', [forgetPasswordController::class, 'email_sent'])->name('phonebook.emailsent');
+Route::get('/phonebook/forgetpasswordemailsent', [forgetPasswordController::class, 'reset_link'])->name('phonebook.resetlink');
+Route::post('/phonebook/{verificationcode}/forgetpasswordemail', [forgetPasswordController::class, 'reset_password'])->name('phonebook.reset.password');
 
 

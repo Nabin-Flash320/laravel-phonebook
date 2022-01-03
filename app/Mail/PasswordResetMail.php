@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RegistrationMail extends Mailable
+class PasswordResetMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,7 +29,7 @@ class RegistrationMail extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_USERNAME', env('From office')))
-                                ->subject('Email Verification Code')
-                                ->view('registrationEmail', ['email_data'=>$this->email_data]);
+                                ->subject('Password resetting link')
+                                ->view('passwordLinkEmail', ['email_data'=>$this->email_data]);
     }
 }
